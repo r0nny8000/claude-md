@@ -34,6 +34,22 @@ Why this layout and not a symlink or `claudeMdExcludes`: see
   and don't pick "Project instructions" in `/memory` in this repo. Any of
   those would load as instructions again.
 
+## history/
+
+Backup copies of Claude Code config files, so they can be restored if the
+originals get lost.
+
+| File                    | Original                  |
+| ----------------------- | ------------------------- |
+| `history/settings.json` | `~/.claude/settings.json` |
+
+To update a copy, copy the original over it and commit. To restore, copy it
+back.
+
+This repo is public. Before committing or pushing a copy, check it for secret
+or private information: API keys, tokens, passwords, email addresses, `env`
+values, MCP server credentials. If you find any, do not commit or push it.
+
 ## Limitations
 
 - Cowork desktop sessions skip user-scope imports that point outside the

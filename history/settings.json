@@ -1,0 +1,39 @@
+{
+  "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/home/autobot/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "herdr-tab-label@terminal-config": true,
+    "ai-engineer@r0nny8000-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "terminal-config": {
+      "source": {
+        "source": "directory",
+        "path": "/home/autobot/code/r0nny8000/terminal-config/claude"
+      }
+    },
+    "r0nny8000-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "/home/autobot/code/r0nny8000/claude-plugins"
+      }
+    }
+  },
+  "theme": "dark-ansi",
+  "teammateMode": "auto",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true
+}
