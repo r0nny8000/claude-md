@@ -30,9 +30,9 @@ Why this layout and not a symlink or `claudeMdExcludes`: see
 
 - Edit `global-instructions.md` and commit. Changes apply from the next new
   session.
-- Don't add a file named `CLAUDE.md`, `CLAUDE.local.md` or `AGENTS.md` here,
-  and don't pick "Project instructions" in `/memory` in this repo. Any of
-  those would load as instructions again.
+- Don't put the global instructions, or an import of them, into a
+  `CLAUDE.md`, `CLAUDE.local.md` or `AGENTS.md` here. They would load twice.
+  The repo's `CLAUDE.md` holds repo-specific rules only (ADR 0002).
 
 ## history/
 
@@ -46,9 +46,8 @@ originals get lost.
 To update a copy, copy the original over it and commit. To restore, copy it
 back.
 
-This repo is public. Before committing or pushing a copy, check it for secret
-or private information: API keys, tokens, passwords, email addresses, `env`
-values, MCP server credentials. If you find any, do not commit or push it.
+This repo is public: check a copy for secrets before committing it. The rule
+is in `CLAUDE.md`.
 
 ## Limitations
 

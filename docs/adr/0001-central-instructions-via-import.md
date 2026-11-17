@@ -1,7 +1,7 @@
 # 1. Maintain global instructions centrally via an @import
 
 Date: 2026-11-15
-Status: Accepted
+Status: Accepted, amended by 0002
 
 ## Context
 
