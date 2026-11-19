@@ -49,6 +49,27 @@ back.
 This repo is public: check a copy for secrets before committing it. The rule
 is in `CLAUDE.md`.
 
+## statusline/
+
+My Claude Code status line, one line in this order:
+
+    Opus 5.5 · effort high · context 8% · token 85k + 1.19M cached (4.12$) · 5h limit 12% (resets 3:59am) · week limit 3% (resets Nov 25, 5:59am)
+
+| Segment    | Meaning                                                                         |
+| ---------- | ------------------------------------------------------------------------------- |
+| token      | Session tokens: input + cache writes + output, then cache reads, summed from the transcript |
+| (4.12$)    | Claude Code's session cost estimate at API list prices, not a subscription bill |
+| 5h / week  | Plan usage limits; reset times in Europe/Berlin                                  |
+
+Setup: add this to `~/.claude/settings.json` (already in `history/settings.json`):
+
+    "statusLine": {
+      "type": "command",
+      "command": "python ~/code/r0nny8000/claude-md/statusline/statusline.py"
+    }
+
+Tests: `cd statusline && uv run --with pytest pytest`
+
 ## Limitations
 
 - Cowork desktop sessions skip user-scope imports that point outside the
