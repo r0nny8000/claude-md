@@ -12,7 +12,20 @@ from zoneinfo import ZoneInfo
 BERLIN = ZoneInfo("Europe/Berlin")
 # Hardcoded instead of strftime("%b %p"): the system locale is German, which
 # would give "Dez" for December and an empty string for am/pm.
-MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+MONTHS = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+]
 
 
 def format_tokens(n):
@@ -74,18 +87,22 @@ def build_line(data, now):
 
     effort = (data.get("effort") or {}).get("level")
     if effort:
-        parts.append(f"effort {effort}")
+        parts.append(f"{effort}")
 
     context = (data.get("context_window") or {}).get("used_percentage") or 0
-    parts.append(f"context {round(context)}%")
+    parts.append(f"ctx {round(context)}%")
 
     new, cached = session_tokens(data.get("transcript_path"))
     cost = (data.get("cost") or {}).get("total_cost_usd") or 0
-    parts.append(f"token {format_tokens(new)} + {format_tokens(cached)} cached ({cost:.2f}$)")
+    parts.append(
+        f"token {format_tokens(new)} + {format_tokens(cached)} cached ({cost:.2f}$)"
+    )
 
     limits = data.get("rate_limits") or {}
     parts.append(limit_segment("5h limit", limits.get("five_hour"), now))
-    parts.append(limit_segment("week limit", limits.get("seven_day"), now, always_date=True))
+    parts.append(
+        limit_segment("week limit", limits.get("seven_day"), now, always_date=True)
+    )
 
     return " · ".join(parts)
 
